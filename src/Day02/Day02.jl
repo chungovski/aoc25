@@ -8,9 +8,9 @@ function run()
     answer1 = part1(input)
     answer2 = part2(input)
 
-    println("\n    Day 02")
-    println("    ├─ Part 01: $(answer1)")
-    println("    └─ Part 02: $(answer2)")
+    println("\n  Day 02")
+    println("  ├─ Part 01: $(answer1)")
+    println("  └─ Part 02: $(answer2)")
 end
 
 ingest(path) = [(parse.(Int, split(range, "-"))) for range in split(readline(path), ",")]
