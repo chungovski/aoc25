@@ -8,6 +8,9 @@ function run()
     answer1 = part1(input)
     answer2 = part2(input)
 
+    @assert answer1 == 1154
+    @assert answer2 == 6819
+
     println("\n  Day 01")
     println("  ├─ Part 01: $(answer1)")
     println("  └─ Part 02: $(answer2)")
@@ -21,11 +24,11 @@ function rotate(rotations, start_pos)
     zero_ends, zero_clicks, range = 0, 0, 100
     for rotation = rotations
         end_pos = rotation + start_pos
-        zero_clicks +=  rotation > 0 ? div(end_pos, range) : div(range - end_pos, range) - iszero(start_pos)
+        zero_clicks += rotation > 0 ? div(end_pos, range) : div(range - end_pos, range) - iszero(start_pos)
         start_pos = mod(end_pos, range)
         zero_ends += iszero(start_pos)
     end
-    return zero_ends, zero_clicks
+    zero_ends, zero_clicks
 end
 
-end # module
+end

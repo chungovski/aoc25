@@ -46,9 +46,9 @@ open(modpath, create = true, write = true) do f
         answer1 = part1(input)
         answer2 = part2(input)
 
-        println("\\n    Day $(lpad(day, 2, "0"))")
-        println("    ├─ Part 01: \$(answer1)")
-        println("    └─ Part 02: \$(answer2)")
+        println("\\n  Day $(lpad(day, 2, "0"))")
+        println("  ├─ Part 01: \$(answer1)")
+        println("  └─ Part 02: \$(answer2)")
     end
 
     function ingest(path)
