@@ -1,8 +1,8 @@
 using ArgParse
 using HTTP
 
-#=------------------------------------------------------------------------------ 
-| ArgParse Settings 
+#=------------------------------------------------------------------------------
+| ArgParse Settings
 ------------------------------------------------------------------------------=#
 
 settings = ArgParseSettings()
@@ -18,7 +18,7 @@ parsed_args = parse_args(settings)
 day = parsed_args["day"]
 
 
-#=------------------------------------------------------------------------------ 
+#=------------------------------------------------------------------------------
 | Generate Templated Puzzle Folder
 ------------------------------------------------------------------------------=#
 
@@ -37,14 +37,19 @@ println("Writing module file...")
 open(modpath, create = true, write = true) do f
     contents = """
     module $dayname
-    using AdventOfCode: getinput
+    include("../AdventOfCode.jl")
+    using .AdventOfCode: getinput
 
     export run
     function run()
         inpath  = getinput($day, "input")
         input   = ingest(inpath)
+        println(input)
         answer1 = part1(input)
         answer2 = part2(input)
+
+        #@assert answer1 == missing "answer1 was $answer1"
+        #@assert answer2 == missing "answer2 was $answer2"
 
         println("\\n  Day $(lpad(day, 2, "0"))")
         println("  ├─ Part 01: \$(answer1)")

@@ -1,9 +1,15 @@
 using ArgParse
 using Revise
-import AdventOfCode
+include("AdventOfCode.jl")
+using .AdventOfCode
 
-#=------------------------------------------------------------------------------ 
-| ArgParse Settings 
+#=------------------------------------------------------------------------------
+| Load days dynamically
+------------------------------------------------------------------------------=#
+load()
+
+#=------------------------------------------------------------------------------
+| ArgParse Settings
 ------------------------------------------------------------------------------=#
 settings = ArgParseSettings()
 @add_arg_table! settings begin
@@ -18,7 +24,7 @@ day = parsed_args["day"]
 
 
 #=------------------------------------------------------------------------------
-| Run the indicated Day puzzle and display output
+| Run a specific Day puzzle and display output
 ------------------------------------------------------------------------------=#
 function start_day(day)
     daymodname = Symbol("Day", lpad(day, 2, "0"))
@@ -33,13 +39,9 @@ end
 println("\nAdvent of Code Results:")
 if day == 0
     for d in 1:24
-        if isdir(normpath(joinpath(@__FILE__, "../../inputs", lpad(d, 2, "0"))))
-            start_day(d)
-            
-        else
-            break
-        end
+        (isdir ∘ normpath ∘ joinpath)(@__FILE__, "../../inputs", lpad(d, 2, "0")) &&
+        start_day(d) || break
     end
 else
-    start_day(day)
+    @time start_day(day)
 end

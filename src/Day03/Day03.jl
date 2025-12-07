@@ -1,5 +1,6 @@
 module Day03
-using AdventOfCode: getinput
+include("../AdventOfCode.jl")
+using .AdventOfCode: getinput
 
 export run
 function run()

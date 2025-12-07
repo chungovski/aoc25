@@ -1,5 +1,6 @@
 module Day02
-using AdventOfCode: getinput
+include("../AdventOfCode.jl")
+using .AdventOfCode: getinput
 
 export run
 function run()
@@ -23,7 +24,7 @@ part2(ranges) = find(ranges)
 find(ranges, pred=(_, _) -> true) = sum(Set(n for range in ranges for n in range[1]:range[2] if is_valid(n, pred)))
 
 function is_valid(n, pred)
-    s, l = string(n), length(s)
+    s, l = string(n), ndigits(n)
     any(i -> mod(l, i) == 0 && count(first(s, i), s) == div(l, i) && pred(l, i), 1:div(l, 2))
 end
 

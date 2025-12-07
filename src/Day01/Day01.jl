@@ -1,5 +1,6 @@
 module Day01
-using AdventOfCode: getinput
+include("../AdventOfCode.jl")
+using .AdventOfCode: getinput
 
 export run
 function run()
@@ -16,7 +17,7 @@ function run()
     println("  └─ Part 02: $(answer2)")
 end
 
-ingest(path) = [parse(Int, line[2:end]) * (startswith(line, "L") ? -1 : 1) for line in readlines(path)]
+ingest(path) = map(line -> parse(Int, line[2:end]) * (startswith(line, "L") ? -1 : 1), readlines(path))
 part1(input) = rotate(input, 50)[1]
 part2(input) = rotate(input, 50)[2]
 

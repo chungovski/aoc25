@@ -20,7 +20,8 @@ AdventOfCode
 
 With the `AdventOfCode` package activated (see below):
 
-- Get the results for a particular day with `julia src/run.jl -d 1`
+- Get the results for a specific day with `julia src/run.jl -d 1` with performance measurement
+- Run all with `julia src/run.jl`
 - Template a new day with `julia src/template.jl -d 1`
 
 Templating a new day entails creating a 'Day' folder with template scripts for

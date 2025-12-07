@@ -1,5 +1,6 @@
 module Day05
-using AdventOfCode: getinput
+include("../AdventOfCode.jl")
+using .AdventOfCode: getinput
 
 export run
 function run()
@@ -24,11 +25,8 @@ function ingest(path)
 end
 
 function part1(input)
-    fresh = Set{Int}()
-    for range in input[1], fruit in input[2]
-        range[1] ≤ fruit ≤ range[2] && push!(fresh, fruit)
-    end
-    length(fresh)
+    ranges, fruits = input
+    length(Set(f for r in ranges for f in fruits if r[1] ≤ f ≤ r[2]))
 end
 
 function part2(ranges)
