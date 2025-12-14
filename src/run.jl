@@ -39,8 +39,11 @@ end
 println("\nAdvent of Code Results:")
 if day == 0
     for d in 1:24
-        (isdir ∘ normpath ∘ joinpath)(@__FILE__, "../../inputs", lpad(d, 2, "0")) &&
-        start_day(d) || break
+        if (isdir ∘ normpath ∘ joinpath)(@__FILE__, "../../inputs", lpad(d, 2, "0"))
+            start_day(d)
+        else
+            break
+        end
     end
 else
     @time start_day(day)
