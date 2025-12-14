@@ -29,14 +29,14 @@ part2(input) = launch(input)[2]
 function launch(map)
     splits, start, max = 1, map[1][1][1], map[2]
     beams = Dict(start - 1 => 1, start + 1 => 1)
-    for splitters in map[1][begin+1:end]
+    for splitters in map[1][2:end]
         next_beams = Dict()
         for (beam, timelines) in beams
             if beam in splitters
-                beam - 1 > 0 &&
-                    (next_beams[beam-1] = get(next_beams, beam - 1, 0) + timelines)
-                beam + 1 <= max &&
-                    (next_beams[beam+1] = get(next_beams, beam + 1, 0) + timelines)
+                beam > 1 &&
+                    (next_beams[beam-1] = get!(next_beams, beam - 1, 0) + timelines)
+                beam < max &&
+                    (next_beams[beam+1] = get!(next_beams, beam + 1, 0) + timelines)
                 splits += 1
             else # beams that pass through
                 next_beams[beam] = get(next_beams, beam, 0) + timelines
